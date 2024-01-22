@@ -69,6 +69,7 @@ exports.advancedatafilter = async (req, res) => {
     const type = req.query.type || "";
     const status = req.query.status || "";
     const rating = req.query.rating || "";
+    const studios = req.query.studios || "";
     const language = req.query.language || "";
 
     const genreArray = Array.isArray(genre) ? genre : [genre];
@@ -88,6 +89,7 @@ exports.advancedatafilter = async (req, res) => {
         date: { $regex: year, $options: "i" },
         type: { $regex: type, $options: "i" },
         status: { $regex: status, $options: "i" },
+        studios: { $regex: studios, $options: "i" },
         rating: { $gte: ratingMin, $lt: ratingMax },
         language: { $in: languageArray.map(g => new RegExp(g, 'i')) },
     };
